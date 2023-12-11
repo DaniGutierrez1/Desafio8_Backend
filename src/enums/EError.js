@@ -6,5 +6,5 @@ export const EError={
     PASSWORD_ERROR:5,
     ID_ERROR:6,
     PRODUCT_ERROR:7,
-    
+    CART_ERROR:8
 }

@@ -61,8 +61,8 @@ app.use("/api/users",usersRouter);
 app.use(errorHandler);
 
 //Faker, pasar a routes
-app.get("/api/users", (req,res)=>{
-    const cant=parseInt(req.query.cant) || 10;
+app.get("/mockingproducts", (req,res)=>{
+    const cant=parseInt(req.query.cant) || 100;
     let carts =[]
     for(let i=0 ; i<cant;i++){
         const cart = generateCart();

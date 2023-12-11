@@ -15,3 +15,10 @@ export const FindIdErrorMsg=(id)=>{
         El ID ingresado fue ${id}
     `
 }
+
+export const productErrorMsg=(productId)=>{
+    return `
+        El producto no existe o ya no esta en stock
+        Su producto ingresado fue ${productId}
+    `
+}

@@ -48,7 +48,12 @@ export class ProductsController{
             const productCreated = await ProductsService.createProduct(productInfo);
             res.json({status:"succes", data:productCreated, message:"El producto ha sido creado"});
         } catch (error) {
-            res.json({status:"error", message:error.message});
+            CustomError.createError({
+                    name:"error createProduct",
+                    message:"No fue posible crear el producto",
+                    errorCode:EError.PRODUCT_ERROR
+                });
+            //res.json({status:"error", message:error.message});
         }
         
     };

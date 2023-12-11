@@ -1,5 +1,9 @@
 import { CartsService } from "../services/carts.service.js";
 import { ProductsService } from "../services/product.service.js";
+import { EError } from "../enums/EError.js";
+import { CustomError } from "../services/error/customError.service.js";
+import { FindIdErrorMsg,productErrorMsg } from "../services/error/createUserError.service.js";
+
 
 
 export class CartController{
@@ -27,7 +31,13 @@ export class CartController{
             const cart = await CartsService.getCarts()
             res.json({status:"succes", data:cart})
         } catch (error) {
-            res.json({status:"error", message:error.message});
+            CustomError.createError({
+                name:"error FindID",
+                cause:FindIdErrorMsg(req.body),
+                message: "No existe el ID",
+                errorCode: EError.CART_ERROR
+            });
+            //res.json({status:"error", message:error.message});
         }
     };
 
@@ -39,7 +49,14 @@ export class CartController{
             const product = await ProductsService.getProduct(productId)
             const productExist = cart.products.find(product=>product.productIdd ===productId);
             if(!productExist){
-                console.log("No se encuentra este producto")
+                CustomError.createError({
+                    name:"error addProduct",
+                    cause:productErrorMsg(req.body),
+                    message:"Producto inexistente o sin stock",
+                    errorCode:EError.PRODUCT_ERROR
+                });
+
+                //console.log("No se encuentra este producto")
             }
             
             const newProduct ={
