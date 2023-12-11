@@ -2,6 +2,7 @@ import express from "express";
 import { config } from "./config/config.js";
 import { connectDB } from "./config/dbConnection.js";
 
+//Manejador de errores 
 import { errorHandler } from "./middlewares/errorHandler.js";
 
 //Faker

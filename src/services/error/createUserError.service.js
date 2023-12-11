@@ -8,3 +8,10 @@ export const createUserErrorMsg=(user)=>{
     `
 
 }
+
+export const FindIdErrorMsg=(id)=>{
+    return `
+        El ID buscado no existe o no fue encontrado
+        El ID ingresado fue ${id}
+    `
+}

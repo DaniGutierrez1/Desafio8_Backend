@@ -8,6 +8,12 @@ export const errorHandler=(error,req,res,next)=>{
         res.status(401).json({status:"error",error:error.cause});
         case EError.DATABASE_ERROR:
             res.status(500).json({status:"error",error:error.message});
+        case EError.PASSWORD_ERROR:
+            res.status(401).json({status:"error",error:error.cause});
+        case EError.ID_ERROR:
+            res.status(401).json({status:"error",error:error.message});
+        case EError.PRODUCT_ERROR:
+            res.status(401).json({status:"error",error:error.cause});
         default:
             res.status(500).json({status:"error", error: "error desconocido"});
     }

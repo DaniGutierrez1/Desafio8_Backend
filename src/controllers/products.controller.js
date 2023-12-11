@@ -1,4 +1,7 @@
 import { ProductsService } from "../services/product.service.js";
+import { EError } from "../enums/EError.js";
+import { CustomError } from "../services/error/customError.service.js";
+import { FindIdErrorMsg } from "../services/error/createUserError.service.js";
 
 export class ProductsController{
     static getProducts= async(req,res)=>{
@@ -25,8 +28,13 @@ export class ProductsController{
                 
                 res.json({status:"succes",data:productSearch, message:"El producto ha sido encontrado"})
             }else{
-                
-                res.json({status:"error", message:"El id no existe"})
+                CustomError.createError({
+                    name:"error FindID",
+                    cause:FindIdErrorMsg(),
+                    message: "No existe el ID",
+                    errorCode: EError.ID_ERROR
+                });
+                //res.json({status:"error", message:"El id no existe"})
             }
         } catch (error) {
             res.json({status:"error", message:error.message});
